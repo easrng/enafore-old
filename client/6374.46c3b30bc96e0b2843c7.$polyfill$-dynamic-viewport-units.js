@@ -1,0 +1,2 @@
+"use strict";(this.webpackChunk=this.webpackChunk||[]).push([[6374],{4623:(e,t,n)=>{n.r(t);const s=(0,n(7686).g)(requestAnimationFrame);function o(){const e=.01*window.innerHeight;document.documentElement.style.setProperty("--1dvh",e+"px")}o(),document.addEventListener("DOMContentLoaded",o),window.addEventListener("resize",(()=>{s(o)}))},7686:(e,t,n)=>{n.d(t,{g:()=>s});const s=e=>{let t;const n=()=>{const e=t;t=null,e()};return s=>{t||e(n),t=s}}}}]);
+//# sourceMappingURL=6374.46c3b30bc96e0b2843c7.$polyfill$-dynamic-viewport-units.js.map
