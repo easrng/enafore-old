@@ -1,9 +1,0 @@
-{
-  "hostname": "localhost",
-  "quarantineMode": true,
-  "screenshots": {
-    "takeOnFails": false
-  },
-  "skipJsErrors": true,
-  "stopOnFirstFail": true
-}

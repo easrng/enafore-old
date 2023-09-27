@@ -21,20 +21,10 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
     - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-    - name: Use Node.js 16.x
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16.x'
-        cache: 'yarn'
-    - run: yarn --production --pure-lockfile
-    - run: yarn build
-    - run: cp __sapper__/export/service-worker-index.html __sapper__/export/404.html
     - name: Upload GitHub Pages artifact
       uses: actions/upload-pages-artifact@v1.0.4
       with:
-        path: __sapper__/export/
+        path: .
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v1

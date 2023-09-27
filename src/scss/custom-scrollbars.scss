@@ -1,7 +1,0 @@
-html {
-  scrollbar-color: var(--scrollbar-face-color) var(--scrollbar-track-color);
-}
-
-body {  // reset firefox styles so they don't cascade past HTML
-  scrollbar-color: initial;
-}
