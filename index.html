@@ -1,0 +1,94 @@
+<!doctype html>
+<html dir="ltr" lang="en-US" style="color-scheme: dark light">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width" name="viewport" />
+    <link href="https://enafore.social" rel="canonical" />
+    <script>
+      (async () => {
+        if (localStorage.getItem("store_loggedInInstancesInOrder")) {
+          const obj = {};
+          for (const key of [
+            "alwaysShowFocusRing",
+            "autoplayGifs",
+            "composeData",
+            "currentInstance",
+            "currentRegisteredInstanceName",
+            "currentRegisteredInstance",
+            "disableCustomScrollbars",
+            "bottomNav",
+            "centerNav",
+            "disableFollowRequestCount",
+            "hideLongPosts",
+            "disableFavCounts",
+            "disableFollowerCounts",
+            "disableHotkeys",
+            "disableInfiniteScroll",
+            "disableLongAriaLabels",
+            "disableNotificationBadge",
+            "disableReblogCounts",
+            "disableRelativeTimestamps",
+            "disableTapOnStatus",
+            "disableDecomojiConverter",
+            "enableGrayscale",
+            "hideCards",
+            "leftRightChangesFocus",
+            "instanceNameInSearch",
+            "instanceThemes",
+            "instanceSettings",
+            "loggedInInstances",
+            "loggedInInstancesInOrder",
+            "markMediaAsSensitive",
+            "showAllSpoilers",
+            "neverMarkMediaAsSensitive",
+            "ignoreBlurhash",
+            "omitEmojiInDisplayNames",
+            "pinnedPages",
+            "pushSubscriptions",
+            "lastPings",
+            "reduceMotion",
+            "underlineLinks",
+            "iconColors",
+          ]) {
+            const val = localStorage.getItem(`store_${key}`);
+            if (val) {
+              obj[key] = val;
+            }
+          }
+          await Promise.allSettled([
+            ...(await navigator.serviceWorker.getRegistrations()).map((e) =>
+              e.unregister(),
+            ),
+            ...[
+              ...JSON.parse(
+                localStorage.getItem("store_loggedInInstancesInOrder"),
+              ),
+              "keyval-store",
+              "emoji-picker-element-en",
+            ].map(
+              (databaseName) =>
+                new Promise((resolve, reject) => {
+                  const request = indexedDB.deleteDatabase(databaseName);
+                  request.onsuccess = resolve;
+                  request.onerror = reject;
+                  request.onblocked = reject;
+                  request.onupgradeneeded = reject;
+                }),
+            ),
+          ]);
+          localStorage.clear();
+          location.replace(
+            "https://enafore.social/migrate#" + new URLSearchParams(obj),
+          );
+        } else {
+          location.replace("https://enafore.social");
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>
+      Enafore has moved to <a href="https://enafore.social">enafore.social</a>.
+    </noscript>
+  </body>
+</html>
